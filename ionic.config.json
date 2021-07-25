@@ -1,0 +1,7 @@
+{
+  "name": "toySimulator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

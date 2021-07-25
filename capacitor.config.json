@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "toySimulator",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
