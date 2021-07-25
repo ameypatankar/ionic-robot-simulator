@@ -1,0 +1,151 @@
+.container {
+  padding: 20px 17px;
+}
+.header{
+  font-size: 42px;
+  font-weight: 400;
+  color: #204b88;
+}
+.sub-header {
+  font-size: 28px;
+  font-weight: 400;
+  color: #cc817b;
+}
+ion-list {
+  ion-item {
+    &:last-child {
+      --border-width: 0;
+      --inner-border-width: 0;
+    }
+    ion-label {
+      font-size: 21px;
+      font-weight: 400;
+      &:before{
+        content: "\21FE";
+        padding-right: 5px;
+      }
+    }
+  }
+}
+.even-box {
+  background-color: #204b88;
+}
+.odd-box {
+  background-color: #cc817b;
+}
+.simulator-box {
+  padding-right: 1%;
+  padding-left: 1%;
+
+  .simulator-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    line-height: 30px;
+  }
+
+  .simulator-placeholder {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .simulator-direction {
+    width: 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    align-content: center;
+  }
+  .simulator-item {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    flex: 1 0 auto;
+    height: auto;
+    position: relative;
+  }
+  .simulator-item:before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+  .row-value,
+  .column-value {
+    font-size: 16px;
+  }
+  .column-row {
+    max-height: 150px;
+  }
+  .robo {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+  }
+}
+.output {
+  box-sizing: border-box;
+  margin-top: 5px;
+  background-color: rgb(51, 51, 51);
+  color: #ccc;
+  width: 100%;
+  border-radius: 6px;
+  position: relative;
+  opacity: 0.8;
+  height: 300px;
+  overflow: auto;
+  padding: 2rem;
+
+  .output-cmd {
+    display: block;
+    text-transform: uppercase;
+    line-height: 28px;
+  }
+}
+.ion-color-secondary{
+  background-color: #3dc2ff;
+}
+
+ion-button {
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+::ng-deep {
+  .alertMsg,
+  .alert-wrapper {
+    min-width: 450px !important;
+    .alert-sub-title {
+      font-size: 18px
+    }
+    .p-btn {
+      background: #3dc2ff;
+      color: #fff;
+      border-radius: 5px;
+      letter-spacing: 1px;
+    }
+    .alert-title {
+      color: #ff0000;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+  }
+  .reportMsg {
+    .alert-title {
+      color: #3dc2ff;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+  }
+}

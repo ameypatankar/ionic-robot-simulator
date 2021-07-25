@@ -1,0 +1,121 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-row>
+        <ion-col size="9" size-lg="10" size-sm="9" size-xs="9" size-md="9">
+          <ion-title class="header">
+            Toy Robot Simulator
+          </ion-title>
+        </ion-col>
+        <ion-col size="3" size-lg="2" size-sm="3" size-xs="3" size-md="3">
+          <ion-item lines="none">
+            <ion-icon *ngIf="!isDark" slot="start" name="moon"></ion-icon>
+            <ion-icon *ngIf="isDark" slot="start" name="sunny"></ion-icon>
+            <ion-toggle (ionChange)="toggleTheme($event)"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Toy Robot Simulator</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-lg="12" size-sm="12" size-xs="12" size-md="12">
+          <ion-row>
+            <ion-col class="sub-header">
+              Commands
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-card>
+              <ion-list lines="none">
+                <ion-item>
+                  <ion-label text-wrap>PLACE X,Y,F - X is x-axis,Y is y-axis value and F is direction NORTH, SOUTH, EAST or WEST.</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label text-wrap>MOVE - It will move the robot one box forward in the same direction it is facing.</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label text-wrap>LEFT | RIGHT - It will rotate the robot 90 degrees either left or right.</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label text-wrap>REPORT - It will give the current position of the robot in X,Y and F.</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="sub-header ion-text-center ion-margin-bottom ion-margin-top">
+          Playground
+        </ion-col>
+      </ion-row>
+      <ion-row class="simulator-box">
+        <ion-col size="6" size-lg="6" size-sm="12" size-xs="12" size-md="12">
+          <div class="simulator-container" *ngFor='let row of reverseCounter(totalRows)'>
+            <div class="simulator-placeholder row-value">{{row}}</div>
+            <div class="simulator-item" *ngFor='let col of counter(totalCols)' [ngClass]="getBoxClass(row, col)">
+              <app-robo class="robo" *ngIf="isRoboVisible(row, col)" [ngStyle]="{'transform': 'rotate('+getRotation()+'deg)  scale(1)'}">
+              </app-robo>
+            </div>
+          </div>
+          <div class="simulator-container column-row">
+            <div class="simulator-direction">
+              <app-direction></app-direction>
+            </div>
+            <div class="simulator-item column-value" *ngFor='let col of counter(totalCols)'>{{col}}</div>
+          </div>
+        </ion-col>
+        <ion-col size="6" size-lg="6" size-sm="12" size-xs="12" size-md="12">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input (keyup.enter)="runCommand(this.command)" clearInput autocapitalize="on" autoGrow class="input"
+                    placeholder="Enter your commands" [(ngModel)]="command" required></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="runCommand(this.command)">Run</ion-button>
+                <ion-button color="danger" (click)="resetCommand()">Reset</ion-button>
+                <ion-button color="secondary" (click)="runCommand('LEFT')" *ngIf="direction">LEFT</ion-button>
+                <ion-button color="secondary" (click)="runCommand('RIGHT')" *ngIf="direction">RIGHT</ion-button>
+                <ion-button color="secondary" (click)="runCommand('MOVE')" *ngIf="direction">MOVE</ion-button>
+                <ion-button color="success" (click)="runCommand('REPORT')" *ngIf="direction">REPORT</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-row>
+                  <ion-col class="sub-header ion-margin-top">
+                    Commands
+                  </ion-col>
+                </ion-row>
+                <div class="output" #output>
+                  <div *ngFor="let command of commands" class="output-cmd">
+                    > {{command}}
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>©2021 - Curve Tomorrow</ion-title>
+  </ion-toolbar>
+</ion-footer>
